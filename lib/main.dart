@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                   gridButton(
                     context,
                     const DataBreach(),
-                    Icons.search,
+                    Icons.content_paste_search_rounded,
                     'Check if you’re \ninvolved in data \nbreaches',
                   ),
                   // ganto kung pano mag link ng website, di ko niremove malilimutan ko agad hahaha
@@ -141,8 +141,8 @@ class _HomePageState extends State<HomePage> {
                     buttonIcon: Icons.play_circle_outline_outlined,
                   ),
                   CustomContainer(
-                    titleText: "Something's\nPhishy...",
-                    icon: Icons.search,
+                    titleText: "\nSomething's\nPhishy...\n",
+                    icon: Icons.phishing,
                     subText:
                         "Learn how to discern legit websites from phishing scams. Challenge Bobby Phisher and break past his deceptive tricks to win!",
                     page: Phishy(),
@@ -250,20 +250,27 @@ class PassManagers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomBarApp(),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.5,
-          child: const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ExpansionTile(
-                title: Text(
-                  "ghi",
-                ),
-                children: [],
-              ),
-            ],
+      body: Center(
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color.fromRGBO(12, 53, 106,
+                          1), // Border color for the first container
+                      width: 2.0, // Border width for the first container
+                    ),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -494,7 +501,7 @@ class CustomContainer extends StatelessWidget {
                 titleText,
                 style: const TextStyle(
                   fontFamily: 'IntroRust',
-                  fontSize: 15,
+                  fontSize: 16,
                   color: Color.fromRGBO(12, 53, 106, 1),
                 ),
               ),
