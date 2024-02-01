@@ -162,6 +162,8 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+// ----------------------------------------------------------------------------------------------------------------------------
+
 // Design for the AppBar
 class CustomBarApp extends StatefulWidget implements PreferredSizeWidget {
   const CustomBarApp({super.key});
