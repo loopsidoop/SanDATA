@@ -248,9 +248,25 @@ class PassManagers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomBarApp(),
-      body: ComingSoon(),
+    return Scaffold(
+      appBar: const CustomBarApp(),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.5,
+          child: const Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ExpansionTile(
+                title: Text(
+                  "ghi",
+                ),
+                children: [],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
