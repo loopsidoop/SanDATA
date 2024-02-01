@@ -59,6 +59,7 @@ class _HomePageState extends State<HomePage> {
                     Icons.search,
                     'Check if you’re \ninvolved in data \nbreaches',
                   ),
+                  // ganto kung pano mag link ng website, di ko niremove malilimutan ko agad hahaha
                   // ElevatedButton(
                   //   onPressed: () {
                   //     setState(() {
@@ -87,8 +88,10 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+            // Mid buttons
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.90,
+              // ensures na di didikit yung button sa screen
               child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -124,6 +127,7 @@ class _HomePageState extends State<HomePage> {
               height: 20,
             ),
             Center(
+              // Bottom 2 containers
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -140,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -153,10 +157,12 @@ class _HomePageState extends State<HomePage> {
                                 color: Color.fromRGBO(12, 53, 106, 1),
                               ),
                             ),
-                            Icon(
-                              Icons.ring_volume_outlined,
-                              size: 50,
-                              color: Color.fromRGBO(12, 53, 106, 1),
+                            Expanded(
+                              child: Icon(
+                                Icons.ring_volume_outlined,
+                                size: 50,
+                                color: Color.fromRGBO(12, 53, 106, 1),
+                              ),
                             ),
                           ],
                         ),
@@ -188,9 +194,6 @@ class _HomePageState extends State<HomePage> {
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: 5,
-                              ),
                               Text(
                                 "Check Here",
                                 style: TextStyle(
@@ -222,7 +225,7 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -252,9 +255,6 @@ class _HomePageState extends State<HomePage> {
                             height: 1.0,
                             color: Color.fromRGBO(12, 53, 106, 1),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
                         ),
                         ElevatedButton(
                           onPressed: () {
@@ -577,3 +577,140 @@ class _MidButtonState extends State<MidButton> {
     );
   }
 }
+
+class CustomContainer extends StatelessWidget {
+  final String titleText;
+  final IconData icon;
+  const CustomContainer({
+    super.key,
+    required this.titleText,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(5),
+      width: MediaQuery.of(context).size.width * 0.47,
+      height: 225,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: const Color.fromRGBO(
+              12, 53, 106, 1), // Border color for the first container
+          width: 2.0, // Border width for the first container
+        ),
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                titleText,
+                style: const TextStyle(
+                  fontFamily: 'IntroRust',
+                  fontSize: 15,
+                  color: Color.fromRGBO(12, 53, 106, 1),
+                ),
+              ),
+              Expanded(
+                child: Icon(
+                  icon,
+                  size: 50,
+                  color: const Color.fromRGBO(12, 53, 106, 1),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// Container(
+//                     padding: const EdgeInsets.all(5),
+//                     width: MediaQuery.of(context).size.width * 0.47,
+//                     height: 225,
+//                     decoration: BoxDecoration(
+//                       border: Border.all(
+//                         color: const Color.fromRGBO(12, 53, 106,
+//                             1), // Border color for the first container
+//                         width: 2.0, // Border width for the first container
+//                       ),
+//                       borderRadius: BorderRadius.circular(5.0),
+//                     ),
+//                     child: Column(
+//                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                       children: [
+//                         const Row(
+//                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                           children: [
+//                             Text(
+//                               "You might \nbe using a \nDangerous \nwebsite.",
+//                               style: TextStyle(
+//                                 fontFamily: 'IntroRust',
+//                                 fontSize: 15,
+//                                 color: Color.fromRGBO(12, 53, 106, 1),
+//                               ),
+//                             ),
+//                             Expanded(
+//                               child: Icon(
+//                                 Icons.ring_volume_outlined,
+//                                 size: 50,
+//                                 color: Color.fromRGBO(12, 53, 106, 1),
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                         const Text(
+//                           "Our service keeps track and records reported website/application that are deemed a threat to data privacy.",
+//                           style: TextStyle(
+//                             fontFamily: 'RusticPrinted',
+//                             fontSize: 13,
+//                             height: 1.0,
+//                             color: Color.fromRGBO(12, 53, 106, 1),
+//                           ),
+//                         ),
+//                         ElevatedButton(
+//                           onPressed: () {
+//                             Navigator.of(context).push(
+//                               MaterialPageRoute(
+//                                 builder: (BuildContext builder) =>
+//                                     const DangerSites(),
+//                               ),
+//                             );
+//                           },
+//                           style: ElevatedButton.styleFrom(
+//                             backgroundColor:
+//                                 const Color.fromRGBO(12, 53, 106, 1),
+//                             shape: RoundedRectangleBorder(
+//                                 borderRadius: BorderRadius.circular(10.0)),
+//                             padding: const EdgeInsets.all(10),
+//                           ),
+//                           child: const Row(
+//                             mainAxisAlignment: MainAxisAlignment.center,
+//                             children: [
+//                               SizedBox(
+//                                 width: 5,
+//                               ),
+//                               Text(
+//                                 "Check Here",
+//                                 style: TextStyle(
+//                                   fontFamily: 'IntroRust',
+//                                   color: Colors.white,
+//                                 ),
+//                               ),
+//                               Icon(
+//                                 Icons.play_circle_outline_outlined,
+//                                 size: 25,
+//                                 color: Colors.white,
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
