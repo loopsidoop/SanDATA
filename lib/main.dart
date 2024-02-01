@@ -44,6 +44,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: MediaQuery.of(context).size.width,
               child: GridView.count(
+                // Gridview properties
                 physics: const NeverScrollableScrollPhysics(),
                 childAspectRatio: 1.0,
                 mainAxisSpacing: 30,
@@ -453,7 +454,7 @@ class _PhishyState extends State<Phishy> {
   }
 }
 
-// Gridview ElevatedBUtton style
+// Custom widget for Gridview ElevatedButton
 Widget gridButton(
   BuildContext context,
   Widget page,
@@ -491,7 +492,7 @@ Widget gridButton(
   );
 }
 
-// Button at middle
+// Custom widget for the two buttons at the middle
 class MidButton extends StatefulWidget {
   final String urlLink;
   final Color fg;
@@ -576,61 +577,3 @@ class _MidButtonState extends State<MidButton> {
     );
   }
 }
-
-// ElevatedButton(
-//                     onPressed: () {
-//                       setState(
-//                         () {
-//                           launchUrl(
-//                             Uri.parse(
-//                                 'https://privacy.gov.ph/file-a-complaint/'),
-//                             mode: LaunchMode.inAppBrowserView,
-//                           );
-//                         },
-//                       );
-//                     },
-//                     style: ElevatedButton.styleFrom(
-//                       elevation: 3,
-//                       shadowColor: Colors.grey,
-//                       foregroundColor: const Color.fromRGBO(12, 53, 106, 1),
-//                       backgroundColor: const Color.fromRGBO(255, 196, 54, 1.0),
-//                       padding: const EdgeInsets.all(11),
-//                       shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(10.0),
-//                       ),
-//                     ),
-//                     child: const Row(
-//                       mainAxisAlignment: MainAxisAlignment.center,
-//                       children: [
-//                         Icon(
-//                           Icons.warning_amber,
-//                           size: 60,
-//                         ),
-//                         SizedBox(
-//                           width: 7,
-//                         ),
-//                         Column(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           //mainAxisAlignment: MainAxisAlignment.start,
-//                           children: [
-//                             Text(
-//                               "Report a website or app",
-//                               style: TextStyle(
-//                                 fontSize: 16,
-//                                 fontFamily: 'IntroRust',
-//                               ),
-//                             ),
-//                             Text(
-//                               'Tap here to report a dangerous website or software \nto the National Privacy Commission (NPC)',
-//                               textAlign: TextAlign.left,
-//                               style: TextStyle(
-//                                 height: 1,
-//                                 fontSize: 11,
-//                                 fontFamily: 'RusticPrinted',
-//                               ),
-//                             ),
-//                           ],
-//                         ),
-//                       ],
-//                     ),
-//                   ),
