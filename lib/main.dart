@@ -257,9 +257,14 @@ class PassManagers extends StatelessWidget {
 }
 
 // Web Browser Page
-class SecureWebs extends StatelessWidget {
+class SecureWebs extends StatefulWidget {
   const SecureWebs({super.key});
 
+  @override
+  State<SecureWebs> createState() => _SecureWebsState();
+}
+
+class _SecureWebsState extends State<SecureWebs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -273,7 +278,10 @@ class SecureWebs extends StatelessWidget {
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [ExpansionTileExample(), ExpansionTileExample()],
+              children: [
+                ExpansionTileExample(),
+                ExpansionTileExample(),
+              ],
             ),
           ),
         ),
@@ -560,39 +568,50 @@ class ExpansionTileExample extends StatefulWidget {
 }
 
 class _ExpansionTileExampleState extends State<ExpansionTileExample> {
+  bool _customTileExpanded = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.white, // Border color for the first container
-              width: 2.0, // Border width for the first container
-            ),
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10.0),
+        Theme(
+          data: Theme.of(context).copyWith(
+            dividerColor: Colors.transparent,
           ),
-          child: ExpansionTile(
-            initiallyExpanded: true,
-            // key: PageStorageKey(),
-            iconColor: Colors.red,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                SizedBox(
-                  height: 30,
-                  child: Image.asset('images/google_icon.png'),
+          child: Card(
+            child: ExpansionTile(
+              onExpansionChanged: (expanded) {
+                setState(() {
+                  _customTileExpanded = expanded;
+                });
+              },
+              // key: PageStorageKey(),
+              iconColor: const Color.fromRGBO(12, 53, 106, 1),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: Image.asset('images/google_icon.png'),
+                  ),
+                  Text(
+                    "Google Chromes",
+                    style: TextStyle(
+                      fontFamily: "RusticPrinted",
+                      fontSize: 20,
+                      color: _customTileExpanded ? Colors.green : Colors.red,
+                    ),
+                  ),
+                ],
+              ),
+              // subtitle: const Text('Trailing expansion arrow icon'),
+              children: const <Widget>[
+                ListTile(
+                  dense: true,
+                  title: Text('This is tile number 1'),
                 ),
-                const Text("Google Chromes"),
               ],
             ),
-            // subtitle: const Text('Trailing expansion arrow icon'),
-            children: const <Widget>[
-              ListTile(
-                title: Text('This is tile number 1'),
-              ),
-            ],
           ),
         ),
         Card(
@@ -604,7 +623,44 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
             ),
             child: ExpansionTile(
               // key: PageStorageKey(),
-              iconColor: Color.fromRGBO(12, 53, 106, 1),
+              iconColor: const Color.fromRGBO(12, 53, 106, 1),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: Image.asset('images/google_icon.png'),
+                  ),
+                  Text(
+                    "Google Chromes",
+                    style: TextStyle(
+                      fontFamily: "RusticPrinted",
+                      fontSize: 20,
+                      color: _customTileExpanded ? Colors.green : Colors.red,
+                    ),
+                  ),
+                ],
+              ),
+              // subtitle: const Text('Trailing expansion arrow icon'),
+              children: const <Widget>[
+                ListTile(
+                  dense: true,
+                  title: Text('This is tile number 1'),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Card(
+          color: Colors.white,
+          surfaceTintColor: Colors.white,
+          child: Theme(
+            data: ThemeData(
+              dividerColor: Colors.transparent,
+            ),
+            child: ExpansionTile(
+              // key: PageStorageKey(),
+              iconColor: const Color.fromRGBO(12, 53, 106, 1),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
