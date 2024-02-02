@@ -255,11 +255,13 @@ class PassManagers extends StatelessWidget {
           child: SizedBox(
             width: double.infinity,
             height: double.infinity,
-            child: Column(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
+                  height: 20,
+                  width: 30,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: const Color.fromRGBO(12, 53, 106,
@@ -268,7 +270,19 @@ class PassManagers extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(5.0),
                   ),
-                )
+                ),
+                Container(
+                  height: 20,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color.fromRGBO(12, 53, 106,
+                          1), // Border color for the first container
+                      width: 2.0, // Border width for the first container
+                    ),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                ),
               ],
             ),
           ),
