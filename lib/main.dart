@@ -272,24 +272,92 @@ class _SecureWebsState extends State<SecureWebs> {
       appBar: const CustomBarApp(),
       body: SingleChildScrollView(
         child: Center(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
-            height: MediaQuery.of(context).size.height,
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SecureWebExpansionTile(
-                  browserIcon: 'images/google_icon.png',
-                  browserName: 'Google Chrome',
-                  listTitle: 'Why choose Google Chrome',
-                  listSubTitle:
-                      "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
-                  browserLink:
-                      'https://support.google.com/chrome/answer/95346?hl=en&co=GENIE.Platform%3DDesktop&oco=1#',
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              Card(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0),
+                  ),
                 ),
-              ],
-            ),
+                color: Colors.white,
+                surfaceTintColor: Colors.white,
+                elevation: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.90,
+                    height: 50,
+                    child: const Center(
+                      child: Text(
+                        'Secure Web Browsers',
+                        style: TextStyle(
+                          fontFamily: 'IntroRust',
+                          fontSize: 19,
+                          color: Color.fromRGBO(12, 53, 106, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: const Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SecureWebExpansionTile(
+                      browserIcon: 'images/google_icon.png',
+                      browserName: 'Google Chrome',
+                      listTitle: 'Why choose Google Chrome',
+                      listSubTitle:
+                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                      browserLink:
+                          'https://support.google.com/chrome/answer/95346?hl=en&co=GENIE.Platform%3DDesktop&oco=1#',
+                    ),
+                    SecureWebExpansionTile(
+                      browserIcon: 'images/micro_icon.png',
+                      browserName: 'Microsoft Edge',
+                      listTitle: 'Why choose Microsoft Edge',
+                      listSubTitle:
+                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                      browserLink:
+                          'https://www.microsoft.com/en-us/edge/download?form=MA13FJ&ch=1',
+                    ),
+                    SecureWebExpansionTile(
+                      browserIcon: 'images/firefox_icon.png',
+                      browserName: 'Mozilla Firefox',
+                      listTitle: 'Why choose Mozilla Firefox',
+                      listSubTitle:
+                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                      browserLink: 'https://www.mozilla.org/en-US/firefox/new/',
+                    ),
+                    SecureWebExpansionTile(
+                      browserIcon: 'images/opera_icon.png',
+                      browserName: 'Opera',
+                      listTitle: 'Why choose Opera',
+                      listSubTitle:
+                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                      browserLink: 'https://www.opera.com/download',
+                    ),
+                    SecureWebExpansionTile(
+                      browserIcon: 'images/brave_icon.png',
+                      browserName: 'Brave',
+                      listTitle: 'Why choose Brave?',
+                      listSubTitle:
+                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                      browserLink: 'https://brave.com/download/',
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -589,96 +657,98 @@ class SecureWebExpansionTile extends StatefulWidget {
 class _SecureWebExpansionTileState extends State<SecureWebExpansionTile> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Card(
-          color: Colors.white,
-          surfaceTintColor: Colors.white,
-          child: Theme(
-            data: ThemeData(
-              dividerColor: Colors.transparent,
+    return Card(
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.outline,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+      ),
+      color: Colors.white,
+      surfaceTintColor: Colors.white,
+      child: Theme(
+        data: ThemeData(
+          dividerColor: Colors.transparent,
+        ),
+        child: ExpansionTile(
+          iconColor: const Color.fromRGBO(12, 53, 106, 1),
+          collapsedIconColor: const Color.fromRGBO(12, 53, 106, 1),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 50,
+                child: Image.asset(widget.browserIcon),
+              ),
+              Text(
+                widget.browserName,
+                style: const TextStyle(
+                  fontFamily: "RusticPrinted",
+                  fontSize: 20,
+                  color: Color.fromRGBO(12, 53, 106, 1),
+                ),
+              ),
+            ],
+          ),
+          children: <Widget>[
+            ListTile(
+              dense: true,
+              title: Text(
+                widget.listTitle,
+                style: const TextStyle(
+                  fontFamily: "IntroRust",
+                  color: Color.fromRGBO(12, 53, 106, 1),
+                ),
+              ),
+              subtitle: Text(
+                widget.listSubTitle,
+                style: const TextStyle(
+                  fontFamily: "RusticPrinted",
+                  color: Color.fromRGBO(12, 53, 106, 1),
+                ),
+              ),
             ),
-            child: ExpansionTile(
-              iconColor: const Color.fromRGBO(12, 53, 106, 1),
-              collapsedIconColor: const Color.fromRGBO(12, 53, 106, 1),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  launchUrl(Uri.parse(widget.browserLink),
+                      mode: LaunchMode.inAppBrowserView);
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromRGBO(12, 53, 106, 1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                fixedSize: Size(MediaQuery.of(context).size.width * 0.6, 0),
+              ),
+              child: const Row(
                 children: [
-                  SizedBox(
-                    height: 50,
-                    child: Image.asset(widget.browserIcon),
-                  ),
-                  Text(
-                    widget.browserName,
-                    style: const TextStyle(
-                      fontFamily: "RusticPrinted",
-                      fontSize: 20,
-                      color: Color.fromRGBO(12, 53, 106, 1),
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        "Try Now!",
+                        style: TextStyle(
+                          fontFamily: "IntroRust",
+                          fontSize: 13,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
+                  ),
+                  Icon(
+                    Icons.link_rounded,
+                    color: Colors.white,
                   ),
                 ],
               ),
-              children: <Widget>[
-                ListTile(
-                  dense: true,
-                  title: Text(
-                    widget.listTitle,
-                    style: const TextStyle(
-                      fontFamily: "IntroRust",
-                      color: Color.fromRGBO(12, 53, 106, 1),
-                    ),
-                  ),
-                  subtitle: Text(
-                    widget.listSubTitle,
-                    style: const TextStyle(
-                      fontFamily: "RusticPrinted",
-                      color: Color.fromRGBO(12, 53, 106, 1),
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      launchUrl(Uri.parse(widget.browserLink),
-                          mode: LaunchMode.inAppBrowserView);
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromRGBO(12, 53, 106, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    fixedSize: Size(MediaQuery.of(context).size.width * 0.6, 0),
-                  ),
-                  child: const Row(
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            "Try Now!",
-                            style: TextStyle(
-                              fontFamily: "IntroRust",
-                              fontSize: 13,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Icon(
-                        Icons.link_rounded,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
             ),
-          ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
