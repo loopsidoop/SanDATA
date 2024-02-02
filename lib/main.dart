@@ -181,7 +181,7 @@ class _CustomBarAppState extends State<CustomBarApp> {
     return AppBar(
       foregroundColor: Colors.white,
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.asset(
             'images/sandata_icon.png',
@@ -248,46 +248,10 @@ class PassManagers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomBarApp(),
-      body: Center(
-        child: SingleChildScrollView(
-          child: SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 20,
-                  width: 30,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color.fromRGBO(12, 53, 106,
-                          1), // Border color for the first container
-                      width: 2.0, // Border width for the first container
-                    ),
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                ),
-                Container(
-                  height: 20,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color.fromRGBO(12, 53, 106,
-                          1), // Border color for the first container
-                      width: 2.0, // Border width for the first container
-                    ),
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+    return const Scaffold(
+      backgroundColor: Color(0xFFF4F6FF),
+      appBar: CustomBarApp(),
+      body: ComingSoon(),
     );
   }
 }
@@ -298,9 +262,22 @@ class SecureWebs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomBarApp(),
-      body: ComingSoon(),
+    return Scaffold(
+      backgroundColor: const Color(0xFFF4F6FF),
+      appBar: const CustomBarApp(),
+      body: SingleChildScrollView(
+        child: Center(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height,
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [ExpansionTileExample(), ExpansionTileExample()],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -571,6 +548,91 @@ class CustomContainer extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class ExpansionTileExample extends StatefulWidget {
+  const ExpansionTileExample({super.key});
+
+  @override
+  State<ExpansionTileExample> createState() => _ExpansionTileExampleState();
+}
+
+class _ExpansionTileExampleState extends State<ExpansionTileExample> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.white, // Border color for the first container
+              width: 2.0, // Border width for the first container
+            ),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: ExpansionTile(
+            initiallyExpanded: true,
+            // key: PageStorageKey(),
+            iconColor: Colors.red,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  height: 30,
+                  child: Image.asset('images/google_icon.png'),
+                ),
+                const Text("Google Chromes"),
+              ],
+            ),
+            // subtitle: const Text('Trailing expansion arrow icon'),
+            children: const <Widget>[
+              ListTile(
+                title: Text('This is tile number 1'),
+              ),
+            ],
+          ),
+        ),
+        Card(
+          color: Colors.white,
+          surfaceTintColor: Colors.white,
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              dividerColor: Colors.transparent,
+            ),
+            child: ExpansionTile(
+              // key: PageStorageKey(),
+              iconColor: Color.fromRGBO(12, 53, 106, 1),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: Image.asset('images/google_icon.png'),
+                  ),
+                  const Text(
+                    "Google Chromes",
+                    style: TextStyle(
+                      fontFamily: "RusticPrinted",
+                      fontSize: 20,
+                      color: Color.fromRGBO(12, 53, 106, 1),
+                    ),
+                  ),
+                ],
+              ),
+              // subtitle: const Text('Trailing expansion arrow icon'),
+              children: const <Widget>[
+                ListTile(
+                  dense: true,
+                  title: Text('This is tile number 1'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
