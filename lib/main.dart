@@ -320,6 +320,7 @@ class _SecureWebsState extends State<SecureWebs> {
                           "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
                       browserLink:
                           'https://support.google.com/chrome/answer/95346?hl=en&co=GENIE.Platform%3DDesktop&oco=1#',
+                      initialState: true,
                     ),
                     SecureWebExpansionTile(
                       browserIcon: 'images/micro_icon.png',
@@ -329,6 +330,7 @@ class _SecureWebsState extends State<SecureWebs> {
                           "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
                       browserLink:
                           'https://www.microsoft.com/en-us/edge/download?form=MA13FJ&ch=1',
+                      initialState: false,
                     ),
                     SecureWebExpansionTile(
                       browserIcon: 'images/firefox_icon.png',
@@ -337,6 +339,7 @@ class _SecureWebsState extends State<SecureWebs> {
                       listSubTitle:
                           "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
                       browserLink: 'https://www.mozilla.org/en-US/firefox/new/',
+                      initialState: false,
                     ),
                     SecureWebExpansionTile(
                       browserIcon: 'images/opera_icon.png',
@@ -345,6 +348,7 @@ class _SecureWebsState extends State<SecureWebs> {
                       listSubTitle:
                           "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
                       browserLink: 'https://www.opera.com/download',
+                      initialState: false,
                     ),
                     SecureWebExpansionTile(
                       browserIcon: 'images/brave_icon.png',
@@ -353,6 +357,7 @@ class _SecureWebsState extends State<SecureWebs> {
                       listSubTitle:
                           "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
                       browserLink: 'https://brave.com/download/',
+                      initialState: false,
                     ),
                   ],
                 ),
@@ -636,6 +641,7 @@ class CustomContainer extends StatelessWidget {
 }
 
 class SecureWebExpansionTile extends StatefulWidget {
+  final bool initialState;
   final String browserIcon;
   final String browserName;
   final String listTitle;
@@ -648,7 +654,8 @@ class SecureWebExpansionTile extends StatefulWidget {
       required this.browserName,
       required this.listTitle,
       required this.listSubTitle,
-      required this.browserLink});
+      required this.browserLink,
+      required this.initialState});
 
   @override
   State<SecureWebExpansionTile> createState() => _SecureWebExpansionTileState();
@@ -671,6 +678,7 @@ class _SecureWebExpansionTileState extends State<SecureWebExpansionTile> {
           dividerColor: Colors.transparent,
         ),
         child: ExpansionTile(
+          initiallyExpanded: widget.initialState,
           iconColor: const Color.fromRGBO(12, 53, 106, 1),
           collapsedIconColor: const Color.fromRGBO(12, 53, 106, 1),
           title: Row(
