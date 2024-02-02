@@ -279,8 +279,15 @@ class _SecureWebsState extends State<SecureWebs> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ExpansionTileExample(),
-                ExpansionTileExample(),
+                SecureWebExpansionTile(
+                  browserIcon: 'images/google_icon.png',
+                  browserName: 'Google Chrome',
+                  listTitle: 'Why choose Google Chrome',
+                  listSubTitle:
+                      "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                  browserLink:
+                      'https://support.google.com/chrome/answer/95346?hl=en&co=GENIE.Platform%3DDesktop&oco=1#',
+                ),
               ],
             ),
           ),
@@ -560,16 +567,26 @@ class CustomContainer extends StatelessWidget {
   }
 }
 
-class ExpansionTileExample extends StatefulWidget {
-  const ExpansionTileExample({super.key});
+class SecureWebExpansionTile extends StatefulWidget {
+  final String browserIcon;
+  final String browserName;
+  final String listTitle;
+  final String listSubTitle;
+  final String browserLink;
+
+  const SecureWebExpansionTile(
+      {super.key,
+      required this.browserIcon,
+      required this.browserName,
+      required this.listTitle,
+      required this.listSubTitle,
+      required this.browserLink});
 
   @override
-  State<ExpansionTileExample> createState() => _ExpansionTileExampleState();
+  State<SecureWebExpansionTile> createState() => _SecureWebExpansionTileState();
 }
 
-class _ExpansionTileExampleState extends State<ExpansionTileExample> {
-  bool _customTileExpanded = false;
-
+class _SecureWebExpansionTileState extends State<SecureWebExpansionTile> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -582,14 +599,6 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
               dividerColor: Colors.transparent,
             ),
             child: ExpansionTile(
-              onExpansionChanged: (expanded) {
-                setState(
-                  () {
-                    _customTileExpanded = expanded;
-                  },
-                );
-              },
-              // key: PageStorageKey(),
               iconColor: const Color.fromRGBO(12, 53, 106, 1),
               collapsedIconColor: const Color.fromRGBO(12, 53, 106, 1),
               title: Row(
@@ -597,11 +606,11 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                 children: [
                   SizedBox(
                     height: 50,
-                    child: Image.asset('images/google_icon.png'),
+                    child: Image.asset(widget.browserIcon),
                   ),
-                  const Text(
-                    "Google Chrome",
-                    style: TextStyle(
+                  Text(
+                    widget.browserName,
+                    style: const TextStyle(
                       fontFamily: "RusticPrinted",
                       fontSize: 20,
                       color: Color.fromRGBO(12, 53, 106, 1),
@@ -609,20 +618,19 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                   ),
                 ],
               ),
-              // subtitle: const Text('Trailing expansion arrow icon'),
               children: <Widget>[
-                const ListTile(
+                ListTile(
                   dense: true,
                   title: Text(
-                    'Google Chrome',
-                    style: TextStyle(
+                    widget.listTitle,
+                    style: const TextStyle(
                       fontFamily: "IntroRust",
                       color: Color.fromRGBO(12, 53, 106, 1),
                     ),
                   ),
                   subtitle: Text(
-                    "Google Chrome is a web browser developed by Google.",
-                    style: TextStyle(
+                    widget.listSubTitle,
+                    style: const TextStyle(
                       fontFamily: "RusticPrinted",
                       color: Color.fromRGBO(12, 53, 106, 1),
                     ),
@@ -630,34 +638,29 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    setState(
-                      () {
-                        launchUrl(Uri.parse('https://www.google.com/'),
-                            mode: LaunchMode.inAppBrowserView);
-                      },
-                    );
+                    setState(() {
+                      launchUrl(Uri.parse(widget.browserLink),
+                          mode: LaunchMode.inAppBrowserView);
+                    });
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(12, 53, 106, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      fixedSize:
-                          Size(MediaQuery.of(context).size.width * 0.6, 0)
-                      // padding: const EdgeInsets.all(5),
-                      ),
+                    backgroundColor: const Color.fromRGBO(12, 53, 106, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    fixedSize: Size(MediaQuery.of(context).size.width * 0.6, 0),
+                  ),
                   child: const Row(
-                    // mainAxisSize: MainAxisSize.min,
-                    // mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Expanded(
                         child: Center(
                           child: Text(
                             "Try Now!",
                             style: TextStyle(
-                                fontFamily: "IntroRust",
-                                fontSize: 13,
-                                color: Colors.white),
+                              fontFamily: "IntroRust",
+                              fontSize: 13,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
