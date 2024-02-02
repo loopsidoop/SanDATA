@@ -276,7 +276,7 @@ class _SecureWebsState extends State<SecureWebs> {
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height,
             child: const Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ExpansionTileExample(),
@@ -574,83 +574,6 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Theme(
-          data: Theme.of(context).copyWith(
-            dividerColor: Colors.transparent,
-          ),
-          child: Card(
-            child: ExpansionTile(
-              onExpansionChanged: (expanded) {
-                setState(() {
-                  _customTileExpanded = expanded;
-                });
-              },
-              // key: PageStorageKey(),
-              iconColor: const Color.fromRGBO(12, 53, 106, 1),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    height: 50,
-                    child: Image.asset('images/google_icon.png'),
-                  ),
-                  Text(
-                    "Google Chromes",
-                    style: TextStyle(
-                      fontFamily: "RusticPrinted",
-                      fontSize: 20,
-                      color: _customTileExpanded ? Colors.green : Colors.red,
-                    ),
-                  ),
-                ],
-              ),
-              // subtitle: const Text('Trailing expansion arrow icon'),
-              children: const <Widget>[
-                ListTile(
-                  dense: true,
-                  title: Text('This is tile number 1'),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Card(
-          color: Colors.white,
-          surfaceTintColor: Colors.white,
-          child: Theme(
-            data: Theme.of(context).copyWith(
-              dividerColor: Colors.transparent,
-            ),
-            child: ExpansionTile(
-              // key: PageStorageKey(),
-              iconColor: const Color.fromRGBO(12, 53, 106, 1),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    height: 50,
-                    child: Image.asset('images/google_icon.png'),
-                  ),
-                  Text(
-                    "Google Chromes",
-                    style: TextStyle(
-                      fontFamily: "RusticPrinted",
-                      fontSize: 20,
-                      color: _customTileExpanded ? Colors.green : Colors.red,
-                    ),
-                  ),
-                ],
-              ),
-              // subtitle: const Text('Trailing expansion arrow icon'),
-              children: const <Widget>[
-                ListTile(
-                  dense: true,
-                  title: Text('This is tile number 1'),
-                ),
-              ],
-            ),
-          ),
-        ),
         Card(
           color: Colors.white,
           surfaceTintColor: Colors.white,
@@ -659,17 +582,25 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
               dividerColor: Colors.transparent,
             ),
             child: ExpansionTile(
+              onExpansionChanged: (expanded) {
+                setState(
+                  () {
+                    _customTileExpanded = expanded;
+                  },
+                );
+              },
               // key: PageStorageKey(),
               iconColor: const Color.fromRGBO(12, 53, 106, 1),
+              collapsedIconColor: const Color.fromRGBO(12, 53, 106, 1),
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
                     height: 50,
                     child: Image.asset('images/google_icon.png'),
                   ),
                   const Text(
-                    "Google Chromes",
+                    "Google Chrome",
                     style: TextStyle(
                       fontFamily: "RusticPrinted",
                       fontSize: 20,
@@ -679,10 +610,66 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                 ],
               ),
               // subtitle: const Text('Trailing expansion arrow icon'),
-              children: const <Widget>[
-                ListTile(
+              children: <Widget>[
+                const ListTile(
                   dense: true,
-                  title: Text('This is tile number 1'),
+                  title: Text(
+                    'Google Chrome',
+                    style: TextStyle(
+                      fontFamily: "IntroRust",
+                      color: Color.fromRGBO(12, 53, 106, 1),
+                    ),
+                  ),
+                  subtitle: Text(
+                    "Google Chrome is a web browser developed by Google.",
+                    style: TextStyle(
+                      fontFamily: "RusticPrinted",
+                      color: Color.fromRGBO(12, 53, 106, 1),
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(
+                      () {
+                        launchUrl(Uri.parse('https://www.google.com/'),
+                            mode: LaunchMode.inAppBrowserView);
+                      },
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(12, 53, 106, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      fixedSize:
+                          Size(MediaQuery.of(context).size.width * 0.6, 0)
+                      // padding: const EdgeInsets.all(5),
+                      ),
+                  child: const Row(
+                    // mainAxisSize: MainAxisSize.min,
+                    // mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            "Try Now!",
+                            style: TextStyle(
+                                fontFamily: "IntroRust",
+                                fontSize: 13,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      Icon(
+                        Icons.link_rounded,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
               ],
             ),
