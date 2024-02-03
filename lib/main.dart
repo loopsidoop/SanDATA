@@ -279,7 +279,10 @@ class _SecureWebsState extends State<SecureWebs> {
                 height: 10,
               ),
               Card(
-                shape: const RoundedRectangleBorder(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20.0),
                     topRight: Radius.circular(20.0),
