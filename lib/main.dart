@@ -53,20 +53,40 @@ class _HomePageState extends State<HomePage> {
                 crossAxisCount: 2,
                 // Number of columns in the grid
                 children: [
-                  gridButton(
-                    context,
-                    const DataBreach(),
-                    Icons.content_paste_search_rounded,
-                    'Check if you’re \ninvolved in data \nbreaches',
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(
+                        () {
+                          launchUrl(Uri.parse('https://haveibeenpwned.com/'),
+                              mode: LaunchMode.inAppBrowserView);
+                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      elevation: 1.5,
+                      shadowColor: Colors.grey,
+                      backgroundColor: Colors.white,
+                      foregroundColor: const Color.fromRGBO(12, 53, 106, 1),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      padding: const EdgeInsets.all(5),
+                    ),
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.content_paste_search_rounded, size: 80.0),
+                        Text(
+                          'Check if you’re \ninvolved in data \nbreaches',
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontFamily: 'RusticPrinted',
+                            height: 0.8,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
                   ),
-                  // ganto kung pano mag link ng website, di ko niremove malilimutan ko agad hahaha
-                  // ElevatedButton(
-                  //   onPressed: () {
-                  //     setState(() {
-                  //       launchUrl(Uri.parse('https://haveibeenpwned.com/'),
-                  //           mode: LaunchMode.inAppBrowserView);
-                  //     });
-                  //
                   gridButton(
                     context,
                     const PassManagers(),
@@ -248,10 +268,106 @@ class PassManagers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFFF4F6FF),
-      appBar: CustomBarApp(),
-      body: ComingSoon(),
+    return Scaffold(
+      backgroundColor: const Color(0xFFF4F6FF),
+      appBar: const CustomBarApp(),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              Card(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0),
+                  ),
+                ),
+                color: Colors.white,
+                surfaceTintColor: Colors.white,
+                elevation: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.90,
+                    height: 50,
+                    child: const Center(
+                      child: Text(
+                        'Password Managers',
+                        style: TextStyle(
+                          fontFamily: 'IntroRust',
+                          fontSize: 19,
+                          color: Color.fromRGBO(12, 53, 106, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: const Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CustomExpansionTile(
+                      browserIcon: 'images/bitwarden_icon.png',
+                      browserName: 'BitWarden',
+                      listTitle: 'Things to consider:',
+                      listSubTitle:
+                          "\u2022 Free cross platform compatibility\n\u2022 End-to-end encryption and zero-knowledge architecture\n\u2022 Free and open-source version\n\u2022 Paid plans with additional features\n\u2022 Lacks emergency access feature",
+                      browserLink: 'https://bitwarden.com/',
+                      initialState: true,
+                    ),
+                    CustomExpansionTile(
+                      browserIcon: 'images/dashlane_icon.png',
+                      browserName: 'Dashlane',
+                      listTitle: 'Things to consider:',
+                      listSubTitle:
+                          "\u2022 Proactive monitoring and remediation\n\u2022 Uses robust encryption algorithms (AES-256 bit)\n\u2022 VPN integration (premium) \n\u2022 Severely limited free version\n",
+                      browserLink: 'https://www.dashlane.com/',
+                      initialState: false,
+                    ),
+                    CustomExpansionTile(
+                      browserIcon: 'images/lastpass_icon.png',
+                      browserName: 'LastPass',
+                      listTitle: 'Things to consider:',
+                      listSubTitle:
+                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                      browserLink: 'https://www.lastpass.com/',
+                      initialState: false,
+                    ),
+                    CustomExpansionTile(
+                      browserIcon: 'images/nordpass_icon.png',
+                      browserName: 'NordPass',
+                      listTitle: 'Things to consider:',
+                      listSubTitle:
+                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                      browserLink: 'https://nordpass.com/',
+                      initialState: false,
+                    ),
+                    CustomExpansionTile(
+                      browserIcon: 'images/1pass_icon.png',
+                      browserName: '1Password',
+                      listTitle: 'Things to consider:',
+                      listSubTitle:
+                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                      browserLink: 'https://1password.com/',
+                      initialState: false,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -283,7 +399,7 @@ class _SecureWebsState extends State<SecureWebs> {
                   side: BorderSide(
                     color: Theme.of(context).colorScheme.outline,
                   ),
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20.0),
                     topRight: Radius.circular(20.0),
                   ),
@@ -315,45 +431,45 @@ class _SecureWebsState extends State<SecureWebs> {
                   // mainAxisAlignment: MainAxisAlignment.center,
                   // crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SecureWebExpansionTile(
+                    CustomExpansionTile(
                       browserIcon: 'images/google_icon.png',
                       browserName: 'Google Chrome',
-                      listTitle: 'Why choose Google Chrome',
+                      listTitle: 'Why choose Google Chrome?',
                       listSubTitle:
                           "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
                       browserLink:
                           'https://support.google.com/chrome/answer/95346?hl=en&co=GENIE.Platform%3DDesktop&oco=1#',
                       initialState: true,
                     ),
-                    SecureWebExpansionTile(
+                    CustomExpansionTile(
                       browserIcon: 'images/micro_icon.png',
                       browserName: 'Microsoft Edge',
-                      listTitle: 'Why choose Microsoft Edge',
+                      listTitle: 'Why choose Microsoft Edge?',
                       listSubTitle:
                           "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
                       browserLink:
                           'https://www.microsoft.com/en-us/edge/download?form=MA13FJ&ch=1',
                       initialState: false,
                     ),
-                    SecureWebExpansionTile(
+                    CustomExpansionTile(
                       browserIcon: 'images/firefox_icon.png',
                       browserName: 'Mozilla Firefox',
-                      listTitle: 'Why choose Mozilla Firefox',
+                      listTitle: 'Why choose Mozilla Firefox?',
                       listSubTitle:
                           "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
                       browserLink: 'https://www.mozilla.org/en-US/firefox/new/',
                       initialState: false,
                     ),
-                    SecureWebExpansionTile(
+                    CustomExpansionTile(
                       browserIcon: 'images/opera_icon.png',
                       browserName: 'Opera',
-                      listTitle: 'Why choose Opera',
+                      listTitle: 'Why choose Opera?',
                       listSubTitle:
                           "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
                       browserLink: 'https://www.opera.com/download',
                       initialState: false,
                     ),
-                    SecureWebExpansionTile(
+                    CustomExpansionTile(
                       browserIcon: 'images/brave_icon.png',
                       browserName: 'Brave',
                       listTitle: 'Why choose Brave?',
@@ -414,6 +530,20 @@ class _PhishyState extends State<Phishy> {
       appBar: CustomBarApp(),
       body: ComingSoon(),
     );
+  }
+}
+
+class TilePage extends StatefulWidget {
+  const TilePage({super.key});
+
+  @override
+  State<TilePage> createState() => _TilePageState();
+}
+
+class _TilePageState extends State<TilePage> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
 
@@ -643,7 +773,125 @@ class CustomContainer extends StatelessWidget {
   }
 }
 
-class SecureWebExpansionTile extends StatefulWidget {
+// class PassManagTile extends StatefulWidget {
+//   final bool initialState;
+//   final String iconPass;
+//   final String passName;
+//   final String listTitle;
+
+//   const PassManagTile(
+//       {super.key,
+//       required this.initialState,
+//       required this.iconPass,
+//       required this.passName,
+//       required this.listTitle});
+
+//   @override
+//   State<PassManagTile> createState() => _PassManagTileState();
+// }
+
+// class _PassManagTileState extends State<PassManagTile> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       shape: RoundedRectangleBorder(
+//         side: BorderSide(
+//           color: Theme.of(context).colorScheme.outline,
+//         ),
+//         borderRadius: const BorderRadius.all(Radius.circular(12)),
+//       ),
+//       color: Colors.white,
+//       surfaceTintColor: Colors.white,
+//       child: Theme(
+//         data: ThemeData(
+//           dividerColor: Colors.transparent,
+//         ),
+//         child: ExpansionTile(
+//           initiallyExpanded: widget.initialState,
+//           iconColor: const Color.fromRGBO(12, 53, 106, 1),
+//           collapsedIconColor: const Color.fromRGBO(12, 53, 106, 1),
+//           title: Row(
+//             children: [
+//               SizedBox(
+//                 height: 50,
+//                 child: Image.asset(widget.iconPass),
+//               ),
+//               Text(
+//                 widget.passName,
+//                 style: const TextStyle(
+//                   fontFamily: "RusticPrinted",
+//                   fontSize: 20,
+//                   color: Color.fromRGBO(12, 53, 106, 1),
+//                 ),
+//               ),
+//             ],
+//           ),
+//           children: <Widget>[
+//             ListTile(
+//               dense: true,
+//               title: Text(
+//                 widget.listTitle,
+//                 style: const TextStyle(
+//                   fontFamily: "IntroRust",
+//                   color: Color.fromRGBO(12, 53, 106, 1),
+//                 ),
+//               ),
+//               subtitle: Table(
+//                 border: TableBorder.all(color: Colors.red),
+//                 defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+//                 children: const [
+//                   TableRow(
+//                     decoration: BoxDecoration(
+//                       color: Colors.teal,
+//                     ),
+//                     children: [
+//                       TableCell(
+//                         child: Padding(
+//                           padding: EdgeInsets.all(8.0),
+//                           child: Text(
+//                             "Pros",
+//                             style: TextStyle(
+//                               fontFamily: "RusticPrinted",
+//                               color: Color.fromRGBO(12, 53, 106, 1),
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                       TableCell(
+//                         child: Padding(
+//                           padding: EdgeInsets.all(8.0),
+//                           child: Text("Cons"),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                   TableRow(
+//                     children: [
+//                       TableCell(
+//                         child: Padding(
+//                           padding: EdgeInsets.all(8.0),
+//                           child: Text("jklasdfhjklasdfhadklsjfhadjklsfhks"),
+//                         ),
+//                       ),
+//                       TableCell(
+//                         child: Padding(
+//                           padding: EdgeInsets.all(8.0),
+//                           child: Text("Cons"),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+class CustomExpansionTile extends StatefulWidget {
   final bool initialState;
   final String browserIcon;
   final String browserName;
@@ -651,7 +899,7 @@ class SecureWebExpansionTile extends StatefulWidget {
   final String listSubTitle;
   final String browserLink;
 
-  const SecureWebExpansionTile(
+  const CustomExpansionTile(
       {super.key,
       required this.browserIcon,
       required this.browserName,
@@ -661,10 +909,10 @@ class SecureWebExpansionTile extends StatefulWidget {
       required this.initialState});
 
   @override
-  State<SecureWebExpansionTile> createState() => _SecureWebExpansionTileState();
+  State<CustomExpansionTile> createState() => _CustomExpansionTileState();
 }
 
-class _SecureWebExpansionTileState extends State<SecureWebExpansionTile> {
+class _CustomExpansionTileState extends State<CustomExpansionTile> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -685,7 +933,6 @@ class _SecureWebExpansionTileState extends State<SecureWebExpansionTile> {
           iconColor: const Color.fromRGBO(12, 53, 106, 1),
           collapsedIconColor: const Color.fromRGBO(12, 53, 106, 1),
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
                 height: 50,
