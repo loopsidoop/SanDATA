@@ -1,4 +1,5 @@
 import 'video_model.dart';
+// import 'package:flutter_youtube_api/models/video_model.dart';
 
 class Channel {
   final String id;
@@ -8,6 +9,8 @@ class Channel {
   final String videoCount;
   final String uploadPlayListId;
   List<Video> videos;
+
+  var uploadPlaylistId;
 
   Channel(
       {required this.id,

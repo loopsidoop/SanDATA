@@ -890,3 +890,8 @@ DerivedData/
 
 
 lib\utilities\keys.dart
+lib\models
+lib\pages
+lib\screens
+lib\services
+lib\utilities

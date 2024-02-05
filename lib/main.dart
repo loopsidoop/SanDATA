@@ -500,20 +500,20 @@ class LearnResources extends StatefulWidget {
 }
 
 class _LearnResourcesState extends State<LearnResources> {
-  final videoURL = 'https://www.youtube.com/watch?v=49t-WWTx0RQ';
-  late YoutubePlayerController _controller;
+  // final videoURL = 'https://www.youtube.com/watch?v=49t-WWTx0RQ';
+  // late YoutubePlayerController _controller;
 
-  @override
-  void initState() {
-    final videoID = YoutubePlayer.convertUrlToId(videoURL);
-    _controller = YoutubePlayerController(
-      initialVideoId: videoID!,
-      flags: const YoutubePlayerFlags(
-        autoPlay: false,
-      ),
-    );
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   final videoID = YoutubePlayer.convertUrlToId(videoURL);
+  //   _controller = YoutubePlayerController(
+  //     initialVideoId: videoID!,
+  //     flags: const YoutubePlayerFlags(
+  //       autoPlay: false,
+  //     ),
+  //   );
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -576,23 +576,23 @@ class _LearnResourcesState extends State<LearnResources> {
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: Center(
-                          child: YoutubePlayer(
-                            controller: _controller,
-                            showVideoProgressIndicator: true,
-                            onReady: () => debugPrint('Ready'),
-                            bottomActions: [
-                              CurrentPosition(),
-                              ProgressBar(
-                                isExpanded: true,
-                                colors: const ProgressBarColors(
-                                  playedColor: Colors.red,
-                                  handleColor: Colors.blue,
-                                ),
-                              ),
-                              const PlaybackSpeedButton()
-                            ],
-                          ),
-                        ),
+                            // child: YoutubePlayer(
+                            //   controller: _controller,
+                            //   showVideoProgressIndicator: true,
+                            //   onReady: () => debugPrint('Ready'),
+                            //   bottomActions: [
+                            //     CurrentPosition(),
+                            //     ProgressBar(
+                            //       isExpanded: true,
+                            //       colors: const ProgressBarColors(
+                            //         playedColor: Colors.red,
+                            //         handleColor: Colors.blue,
+                            //       ),
+                            //     ),
+                            //     const PlaybackSpeedButton()
+                            //   ],
+                            // ),
+                            ),
                       ),
                     ),
                   ),
