@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   gridButton(
                     context,
-                    const LearnResources(),
+                    LearnResources(),
                     Icons.library_books_outlined,
                     'Learning \nResources',
                   ),
@@ -123,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                     icon: Icons.warning_amber,
                     titleText: "Report a website or app",
                     subText:
-                        'Tap here to report a dangerous website or software \nto the National Privacy Commission (NPC)',
+                        'Tap here to report a dangerous website or software \nto the National Privacy Commission (NPC).',
                     titleFontSize: 16.0,
                     subFontSize: 11.0,
                   ),
@@ -131,13 +132,14 @@ class _HomePageState extends State<HomePage> {
                     height: 10,
                   ),
                   MidButton(
-                      urlLink: 'https://easydmarc.com/tools/phishing-url',
+                      urlLink:
+                          'https://transparencyreport.google.com/safe-browsing/search',
                       fg: Colors.white,
                       bg: Color(0xFF0174BE),
                       icon: Icons.check_circle_outline,
                       titleText: "Verify an unknown link",
                       subText:
-                          'Unsure whether or not a link is safe? \nVerify it using our Link Verifier™',
+                          'Unsure whether or not a link is safe? \nVerify it using Google Safe Browsing.',
                       titleFontSize: 17.0,
                       subFontSize: 12.0),
                 ],
@@ -490,14 +492,116 @@ class _SecureWebsState extends State<SecureWebs> {
 }
 
 // Learning Resource Page
-class LearnResources extends StatelessWidget {
+class LearnResources extends StatefulWidget {
   const LearnResources({super.key});
 
   @override
+  State<LearnResources> createState() => _LearnResourcesState();
+}
+
+class _LearnResourcesState extends State<LearnResources> {
+  final videoURL = 'https://www.youtube.com/watch?v=49t-WWTx0RQ';
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    final videoID = YoutubePlayer.convertUrlToId(videoURL);
+    _controller = YoutubePlayerController(
+      initialVideoId: videoID!,
+      flags: const YoutubePlayerFlags(
+        autoPlay: false,
+      ),
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomBarApp(),
-      body: ComingSoon(),
+    return Scaffold(
+      backgroundColor: const Color(0xFFF4F6FF),
+      appBar: const CustomBarApp(),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              Card(
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0),
+                  ),
+                ),
+                color: Colors.white,
+                surfaceTintColor: Colors.white,
+                elevation: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.90,
+                    height: 50,
+                    child: const Center(
+                      child: Text(
+                        'Learning Resources',
+                        style: TextStyle(
+                          fontFamily: 'IntroRust',
+                          fontSize: 19,
+                          color: Color.fromRGBO(12, 53, 106, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Column(
+                children: [
+                  Card(
+                    color: Colors.white,
+                    surfaceTintColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Theme.of(context).colorScheme.outline,
+                      ),
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
+                    ),
+                    child: Theme(
+                      data: ThemeData(
+                        dividerColor: Colors.transparent,
+                      ),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        child: Center(
+                          child: YoutubePlayer(
+                            controller: _controller,
+                            showVideoProgressIndicator: true,
+                            onReady: () => debugPrint('Ready'),
+                            bottomActions: [
+                              CurrentPosition(),
+                              ProgressBar(
+                                isExpanded: true,
+                                colors: const ProgressBarColors(
+                                  playedColor: Colors.red,
+                                  handleColor: Colors.blue,
+                                ),
+                              ),
+                              const PlaybackSpeedButton()
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -772,124 +876,6 @@ class CustomContainer extends StatelessWidget {
     );
   }
 }
-
-// class PassManagTile extends StatefulWidget {
-//   final bool initialState;
-//   final String iconPass;
-//   final String passName;
-//   final String listTitle;
-
-//   const PassManagTile(
-//       {super.key,
-//       required this.initialState,
-//       required this.iconPass,
-//       required this.passName,
-//       required this.listTitle});
-
-//   @override
-//   State<PassManagTile> createState() => _PassManagTileState();
-// }
-
-// class _PassManagTileState extends State<PassManagTile> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       shape: RoundedRectangleBorder(
-//         side: BorderSide(
-//           color: Theme.of(context).colorScheme.outline,
-//         ),
-//         borderRadius: const BorderRadius.all(Radius.circular(12)),
-//       ),
-//       color: Colors.white,
-//       surfaceTintColor: Colors.white,
-//       child: Theme(
-//         data: ThemeData(
-//           dividerColor: Colors.transparent,
-//         ),
-//         child: ExpansionTile(
-//           initiallyExpanded: widget.initialState,
-//           iconColor: const Color.fromRGBO(12, 53, 106, 1),
-//           collapsedIconColor: const Color.fromRGBO(12, 53, 106, 1),
-//           title: Row(
-//             children: [
-//               SizedBox(
-//                 height: 50,
-//                 child: Image.asset(widget.iconPass),
-//               ),
-//               Text(
-//                 widget.passName,
-//                 style: const TextStyle(
-//                   fontFamily: "RusticPrinted",
-//                   fontSize: 20,
-//                   color: Color.fromRGBO(12, 53, 106, 1),
-//                 ),
-//               ),
-//             ],
-//           ),
-//           children: <Widget>[
-//             ListTile(
-//               dense: true,
-//               title: Text(
-//                 widget.listTitle,
-//                 style: const TextStyle(
-//                   fontFamily: "IntroRust",
-//                   color: Color.fromRGBO(12, 53, 106, 1),
-//                 ),
-//               ),
-//               subtitle: Table(
-//                 border: TableBorder.all(color: Colors.red),
-//                 defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-//                 children: const [
-//                   TableRow(
-//                     decoration: BoxDecoration(
-//                       color: Colors.teal,
-//                     ),
-//                     children: [
-//                       TableCell(
-//                         child: Padding(
-//                           padding: EdgeInsets.all(8.0),
-//                           child: Text(
-//                             "Pros",
-//                             style: TextStyle(
-//                               fontFamily: "RusticPrinted",
-//                               color: Color.fromRGBO(12, 53, 106, 1),
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                       TableCell(
-//                         child: Padding(
-//                           padding: EdgeInsets.all(8.0),
-//                           child: Text("Cons"),
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                   TableRow(
-//                     children: [
-//                       TableCell(
-//                         child: Padding(
-//                           padding: EdgeInsets.all(8.0),
-//                           child: Text("jklasdfhjklasdfhadklsjfhadjklsfhks"),
-//                         ),
-//                       ),
-//                       TableCell(
-//                         child: Padding(
-//                           padding: EdgeInsets.all(8.0),
-//                           child: Text("Cons"),
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class CustomExpansionTile extends StatefulWidget {
   final bool initialState;
