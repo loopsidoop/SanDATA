@@ -323,7 +323,7 @@ class PassManagers extends StatelessWidget {
                       browserName: 'BitWarden',
                       listTitle: 'Things to consider:',
                       listSubTitle:
-                          "\u2022 Free cross platform compatibility\n\u2022 End-to-end encryption and zero-knowledge architecture\n\u2022 Free and open-source version\n\u2022 Paid plans with additional features\n\u2022 Lacks emergency access feature",
+                          "\u2022 Free cross platform compatibility\n\u2022 End-to-end encryption and zero-knowledge architecture\n\u2022 Free and open-source version\n\u2022 Offers Self-Hosting of servers\n\u2022 Paid plans with additional features\n\u2022 Lacks emergency access feature",
                       browserLink: 'https://bitwarden.com/',
                       initialState: true,
                     ),
@@ -332,7 +332,7 @@ class PassManagers extends StatelessWidget {
                       browserName: 'Dashlane',
                       listTitle: 'Things to consider:',
                       listSubTitle:
-                          "\u2022 Proactive monitoring and remediation\n\u2022 Uses robust encryption algorithms (AES-256 bit)\n\u2022 VPN integration (premium) \n\u2022 Severely limited free version\n",
+                          "\u2022 Proactive monitoring and remediation\n\u2022 Uses robust encryption algorithms (AES-256 bit)\n\u2022 Receipt capture feature, allowing users to store and organize digital receipts securely.\n\u2022 VPN integration (premium) \n\u2022 Severely limited free version\n",
                       browserLink: 'https://www.dashlane.com/',
                       initialState: false,
                     ),
@@ -341,7 +341,7 @@ class PassManagers extends StatelessWidget {
                       browserName: 'LastPass',
                       listTitle: 'Things to consider:',
                       listSubTitle:
-                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                          "\u2022 Uses AES-256 bit encryption with PBKDF2 SHA-256 and salted hashes\n\u2022 Cross-Platform Compatibility\n\u2022  Security Challenge feature that analyzes your passwords for weaknesses and recommends improvements.\n\u2022 Limited Free Version\n\u2022 Recent Security Incidents",
                       browserLink: 'https://www.lastpass.com/',
                       initialState: false,
                     ),
@@ -350,7 +350,7 @@ class PassManagers extends StatelessWidget {
                       browserName: 'NordPass',
                       listTitle: 'Things to consider:',
                       listSubTitle:
-                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                          "\u2022 Employs a zero-knowledge architecture\n\u2022 Intuitive Interface\n\u2022 Multi-Device Syncing\n\u2022 Data Breach Scanner\n\u2022 Limited Free Version\n",
                       browserLink: 'https://nordpass.com/',
                       initialState: false,
                     ),
@@ -359,7 +359,7 @@ class PassManagers extends StatelessWidget {
                       browserName: '1Password',
                       listTitle: 'Things to consider:',
                       listSubTitle:
-                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                          "\u2022 Uses AES-256 bit encryption and end-to-end encryption\n\u2022 Built-in Watchtower feature that alerts users about compromised passwords and security vulnerabilities.\n\u2022 Travel Mode feature that allows users to temporarily remove sensitive data from their devices when traveling.\n\u2022 Limited Free Version\n",
                       browserLink: 'https://1password.com/',
                       initialState: false,
                     ),
@@ -438,7 +438,7 @@ class _SecureWebsState extends State<SecureWebs> {
                       browserName: 'Google Chrome',
                       listTitle: 'Why choose Google Chrome?',
                       listSubTitle:
-                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                          "\u2022 Seamlessly integrates with other Google services, such as Gmail, Drive, and Calendar, enhancing productivity\n\u2022 Speed and stability\n\u2022 Wide Range of Extensions\n\u2022 Built-in Security such as Safe Browsing and automatic updates\n",
                       browserLink:
                           'https://support.google.com/chrome/answer/95346?hl=en&co=GENIE.Platform%3DDesktop&oco=1#',
                       initialState: true,
@@ -448,7 +448,7 @@ class _SecureWebsState extends State<SecureWebs> {
                       browserName: 'Microsoft Edge',
                       listTitle: 'Why choose Microsoft Edge?',
                       listSubTitle:
-                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                          "\u2022 OFfers built-in tracking prevention and InPrivate browsing mode for improved privacy protection.\n\u2022 Seamlessly integrates with Microsoft 365, OneDrive, and other Microsoft services, enhancing productivity and collaboration\n\u2022 Provides an immersive reading experience with its Reading View and Read Aloud features\n\u2022 Performance and Efficiency\n",
                       browserLink:
                           'https://www.microsoft.com/en-us/edge/download?form=MA13FJ&ch=1',
                       initialState: false,
@@ -458,7 +458,7 @@ class _SecureWebsState extends State<SecureWebs> {
                       browserName: 'Mozilla Firefox',
                       listTitle: 'Why choose Mozilla Firefox?',
                       listSubTitle:
-                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                          "\u2022 Offers extensive customization options with themes, add-ons, and advanced settings, allowing users to tailor their browsing experience\n\u2022 Prioritizes user privacy with features like Enhanced Tracking Protection, blocking third-party trackers by default\n\u2022 Being open-source, Firefox is developed by a global community, ensuring transparency and security in its development process\n\u2022 Fast performance and low memory usage\n",
                       browserLink: 'https://www.mozilla.org/en-US/firefox/new/',
                       initialState: false,
                     ),
@@ -467,7 +467,7 @@ class _SecureWebsState extends State<SecureWebs> {
                       browserName: 'Opera',
                       listTitle: 'Why choose Opera?',
                       listSubTitle:
-                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                          "\u2022 Built-in VPN and Ad BLocker\n\u2022 Offers Opera Turbo, which compresses web pages, reducing data usage and speeding up browsing\n\u2022 Integrated Messaging\n\u2022 Customizable Interface\n",
                       browserLink: 'https://www.opera.com/download',
                       initialState: false,
                     ),
@@ -476,7 +476,7 @@ class _SecureWebsState extends State<SecureWebs> {
                       browserName: 'Brave',
                       listTitle: 'Why choose Brave?',
                       listSubTitle:
-                          "\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n\u2022 Amongus\n",
+                          "\u2022 Blocks ads and trackers by default\n\u2022 Fast and Efficient as it is built on Chromium, ensuring compatibility with chrome exte nsions\n\u2022 Brave's Shields feature blocks malicious scripts, third-party cookies, and other trackers, enhancing security and protecting against online threats\n\u2022  Brave Sync allows users to sync bookmarks, history, and settings across devices securely, ensuring a seamless browsing experience across desktop and mobile\n",
                       browserLink: 'https://brave.com/download/',
                       initialState: false,
                     ),
