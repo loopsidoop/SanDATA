@@ -356,7 +356,7 @@ class PassManagers extends StatelessWidget {
                     ),
                     CustomExpansionTile(
                       browserIcon: 'images/1pass_icon.png',
-                      browserName: '1Password',
+                      browserName: ' 1Password',
                       listTitle: 'Things to consider:',
                       listSubTitle:
                           "\u2022 Uses AES-256 bit encryption and end-to-end encryption\n\u2022 Built-in Watchtower feature that alerts users about compromised passwords and security vulnerabilities.\n\u2022 Travel Mode feature that allows users to temporarily remove sensitive data from their devices when traveling.\n\u2022 Limited Free Version\n",
